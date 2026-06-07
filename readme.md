@@ -7,6 +7,11 @@
 
 A minimal but functional operating system built from scratch in C (with selective Assembly) for the **STM32F103C8T6** microcontroller (ARM Cortex-M3, 72 MHz). The project demonstrates that core OS principles — scheduling, interrupt-driven I/O, DMA, and filesystems — can be realized on a resource-constrained embedded platform with only 64 KB Flash and 20 KB SRAM.
 
+**Hardware Overview:**
+
+
+![Hardware](./img/Picture.png)
+
 Total kernel size: **< 10 KB**.
 
 ---
@@ -102,11 +107,16 @@ make clean
 
 ---
 
+## Results:
+
+![Res1](./img/Result1.jpeg)
+![Res2](./img/Result2.jpeg)
+
 ## Key Design Decisions
 
 - **ROM-resident kernel** — entire OS and task code lives in Flash; SRAM holds stacks and data only (RTOS pattern, not desktop-style load-into-RAM)
 - **Memory-mapped I/O** — all peripherals accessed via C structs cast to base addresses; no special I/O instructions needed
-- **No third-party libraries** — every driver written from scratch against STM32 and ARM reference manuals
+- **No third-party libraries** — every driver written from scratch against reference manuals
 - **PendSV for context switching** — defers the switch until all higher-priority interrupts are serviced
 
 ---
